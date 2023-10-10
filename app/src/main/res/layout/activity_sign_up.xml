@@ -7,7 +7,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="vm"
+            name="viewModel"
             type="org.sopt.dosopttemplate.presentation.signUp.SignUpViewModel" />
     </data>
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/id_hint"
-            android:text="@{vm.id}"
+            android:text="@={viewModel.id}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id" />
@@ -65,7 +65,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/password_hint"
             android:inputType="numberPassword"
-            android:text="@{vm.password}"
+            android:text="@={viewModel.password}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password" />
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/sign_up_nickname_hint"
-            android:text="@{vm.nickname}"
+            android:text="@={viewModel.nickname}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_nickname"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_nickname" />
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/sign_up_mbti_hint"
-            android:text="@{vm.mbti}"
+            android:text="@={viewModel.mbti}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_mbti"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_mbti" />
