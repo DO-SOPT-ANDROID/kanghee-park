@@ -46,11 +46,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             login()
         }
         binding.btnLoginSignUp.setOnClickListener {
-            goToSignUp()
+            moveToSignUp()
         }
     }
 
-    private fun goToSignUp() {
+    private fun moveToSignUp() {
         if (::resultLauncher.isInitialized) resultLauncher.launch(
             Intent(this, SignUpActivity::class.java)
         )
