@@ -2,12 +2,12 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignUpBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
+import org.sopt.dosopttemplate.util.ShowSnackBar.showSnackBar
+import org.sopt.dosopttemplate.util.ToastMessageUtil.showToast
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
@@ -21,14 +21,17 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
     private fun initSignUpBtnClickListener() {
         binding.btnSignUp.setOnClickListener {
-            viewModel.showText()
             if (viewModel.checkSignUpTerms()) {
-                createIntent()
-                makeToast(SIGN_UP_SUCCEED)
-                finish()
+                signUp()
             }
-            snackBar(SIGN_UP_FAILED)
+            showSnackBar(binding.root, SIGN_UP_FAILED)
         }
+    }
+
+    private fun signUp() {
+        createIntent()
+        showToast(applicationContext, SIGN_UP_SUCCEED)
+        finish()
     }
 
     private fun createIntent() {
@@ -39,18 +42,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             )
         }
         setResult(RESULT_OK, intent)
-    }
-
-    private fun makeToast(text: String) {
-        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun snackBar(text: String) {
-        Snackbar.make(
-            binding.root,
-            text,
-            Snackbar.LENGTH_SHORT,
-        ).show()
     }
 
     companion object {

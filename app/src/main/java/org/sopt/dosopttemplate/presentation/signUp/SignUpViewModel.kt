@@ -1,6 +1,5 @@
 package org.sopt.dosopttemplate.presentation.signUp
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.sopt.dosopttemplate.data.UserInfo
@@ -12,16 +11,15 @@ class SignUpViewModel : ViewModel() {
     val mbti: MutableLiveData<String> = MutableLiveData()
 
     fun checkSignUpTerms(): Boolean {
-        if (id.value.isNullOrBlank() || password.value.isNullOrBlank() || nickname.value.isNullOrBlank() || mbti.value.isNullOrBlank()) return false
-        return (isIdLengthSuitable() && isPassWordLengthSuitable() && isNickNameRegexMatch() && isMBTIRegexMatch())
+        if (isSignUpFormsBlank()) return false
+        return isSignUpFormsMatch()
     }
 
-    fun showText() {
-        Log.d(
-            "kang",
-            "id: ${id.value}, password: ${password.value}, nickname: ${nickname.value}, mbti: ${mbti.value}"
-        )
-    }
+    private fun isSignUpFormsMatch() =
+        (isIdLengthSuitable() && isPassWordLengthSuitable() && isNickNameRegexMatch() && isMBTIRegexMatch())
+
+    private fun isSignUpFormsBlank() =
+        (id.value.isNullOrBlank() || password.value.isNullOrBlank() || nickname.value.isNullOrBlank() || mbti.value.isNullOrBlank())
 
     fun createUser(): UserInfo =
         UserInfo(id.value!!, password.value!!, nickname.value!!, mbti.value!!)
