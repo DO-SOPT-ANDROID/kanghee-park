@@ -8,9 +8,6 @@ import androidx.activity.viewModels
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.data.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
-import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.LOGIN_FAILED
-import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.LOGIN_SUCCEED
-import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NON_MEMBER
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
@@ -74,5 +71,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
         startActivity(intentToMain)
         finish()
+    }
+
+    companion object {
+        const val LOGIN_SUCCEED = "로그인 성공"
+        const val LOGIN_FAILED = "로그인 실패. 비밀번호와 아이디를 다시 확인해주세요."
+        const val NON_MEMBER = "회원이 아닙니다. 회원가입을 진행해주세요."
     }
 }
