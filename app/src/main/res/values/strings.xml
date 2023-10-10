@@ -6,13 +6,13 @@
     <string name="password_title">비밀번호</string>
     <string name="password_hint">비밀번호를 입력해주세요</string>
     <string name="sign_up_btn">회원가입하기</string>
+    <string name="nickname_title">닉네임</string>
+    <string name="mbti_title">MBTI</string>
 
     <!-- login -->
     <string name="login_login_btn">로그인하기</string>
 
     <!-- sign up-->
     <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
-    <string name="sign_up_nickname_title">닉네임</string>
-    <string name="sign_up_mbti_title">MBTI</string>
     <string name="sign_up_mbti_hint">MBTI를 입력해주세요</string>
 </resources>
