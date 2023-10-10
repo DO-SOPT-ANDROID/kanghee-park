@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">DoSoptTemplate</string>
-    <string name="login_id_title">ID</string>
-    <string name="login_title">Welcome to SOPT</string>
-    <string name="login_id_hint">아이디를 입력해주세요</string>
-    <string name="login_password_title">비밀번호</string>
-    <string name="login_password_hint">비밀번호를 입력해주세요</string>
+    <string name="id_title">ID</string>
+    <string name="sopt_title">Welcome to SOPT</string>
+    <string name="id_hint">아이디를 입력해주세요</string>
+    <string name="password_title">비밀번호</string>
+    <string name="password_hint">비밀번호를 입력해주세요</string>
+    <string name="sign_up_btn">회원가입하기</string>
+
+    <!-- login -->
     <string name="login_login_btn">로그인하기</string>
-    <string name="login_sign_up_btn">회원가입하기</string>
+
+    <!-- sign up-->
+    <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
+    <string name="sign_up_nickname_title">닉네임</string>
+    <string name="sign_up_mbti_title">MBTI</string>
+    <string name="sign_up_mbti_hint">MBTI를 입력해주세요</string>
 </resources>

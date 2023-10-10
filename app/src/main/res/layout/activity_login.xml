@@ -6,59 +6,59 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/tv_main_title"
+        android:id="@+id/tv_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="@string/login_title"
+        android:text="@string/sopt_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_main_id"
+        android:id="@+id/tv_login_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/login_id_title"
+        android:text="@string/id_title"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title" />
 
     <EditText
-        android:id="@+id/et_main_id"
+        android:id="@+id/et_login_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="@string/login_id_hint"
+        android:hint="@string/id_hint"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_main_id"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
+        app:layout_constraintStart_toStartOf="@id/tv_login_id"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_id" />
 
     <TextView
-        android:id="@+id/tv_main_password"
+        android:id="@+id/tv_login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/login_password_title"
+        android:text="@string/password_title"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_main_id"
-        app:layout_constraintTop_toBottomOf="@id/et_main_id" />
+        app:layout_constraintStart_toStartOf="@id/tv_login_id"
+        app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
     <EditText
-        android:id="@+id/et_main_password"
+        android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="@string/login_password_hint"
+        android:hint="@string/password_hint"
         android:inputType="numberPassword"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_main_id"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_password" />
+        app:layout_constraintStart_toStartOf="@id/tv_login_id"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_password" />
 
     <Button
-        android:id="@+id/btn_main_login"
+        android:id="@+id/btn_login_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -66,17 +66,17 @@
         android:text="@string/login_login_btn"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_main_sign_up"
+        app:layout_constraintEnd_toStartOf="@id/btn_login_sign_up"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_main_sign_up"
+        android:id="@+id/btn_login_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="@string/login_sign_up_btn"
+        android:text="@string/sign_up_btn"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_main_login" />
+        app:layout_constraintStart_toEndOf="@id/btn_login_login" />
 </androidx.constraintlayout.widget.ConstraintLayout>
