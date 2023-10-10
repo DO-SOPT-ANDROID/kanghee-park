@@ -4,13 +4,14 @@
 
     <data>
 
+        <import type="android.view.View" />
+        
         <variable
-            name="vm"
+            name="viewModel"
             type="org.sopt.dosopttemplate.presentation.login.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/id_hint"
+            android:text="@={viewModel.id}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_login_id"
             app:layout_constraintTop_toBottomOf="@id/tv_login_id" />
@@ -63,6 +65,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/password_hint"
             android:inputType="numberPassword"
+            android:text="@={viewModel.password}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_login_id"
             app:layout_constraintTop_toBottomOf="@id/tv_login_password" />
