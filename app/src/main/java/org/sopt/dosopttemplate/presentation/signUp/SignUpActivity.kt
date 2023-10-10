@@ -24,7 +24,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             if (viewModel.checkSignUpTerms()) {
                 signUp()
             }
-            showSnackBar(binding.root, SIGN_UP_FAILED)
+            else showSnackBar(binding.root, SIGN_UP_FAILED)
         }
     }
 
