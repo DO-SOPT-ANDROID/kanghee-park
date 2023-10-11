@@ -1,6 +1,8 @@
 package org.sopt.dosopttemplate.presentation.login
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -68,6 +70,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun moveToMain() {
         val intentToMain = Intent(this, MainActivity::class.java).apply {
             putExtra(USER_INFO, viewModel.userInfo)
+            addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intentToMain)
         finish()
