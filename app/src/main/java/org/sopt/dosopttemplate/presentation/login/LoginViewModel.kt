@@ -23,7 +23,7 @@ class LoginViewModel : ViewModel() {
     private fun checkLogin() = if (isUserInfoCorrect()) LOGIN_SUCCEED
     else LOGIN_FAILED
 
-    private fun isUserInfoCorrect() = id.value.equals(userInfo.id) && password.value.equals(userInfo.password)
+    private fun isUserInfoCorrect() = id.value == userInfo.id && password.value == userInfo.password
 
     fun updateUserInfo(userInfo: UserInfo) {
         this.userInfo = userInfo
