@@ -2,6 +2,7 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.sopt.dosopttemplate.data.Mbti
 import org.sopt.dosopttemplate.data.UserInfo
 import java.util.regex.Pattern
 
@@ -17,10 +18,14 @@ class SignUpViewModel : ViewModel() {
     }
 
     private fun isSignUpFormsMatch() =
-        (isIdLengthSuitable() && isPassWordLengthSuitable() && isNickNameRegexMatch() && isMBTIRegexMatch())
+        (isIdLengthSuitable() && isPassWordLengthSuitable() && isNickNameRegexMatch() && isMBTIRegexMatch() && isMbtiInEnum())
+
+    private fun isMbtiInEnum(): Boolean {
+        return Mbti.values().any { it.name == mbti.value }
+    }
 
     private fun isSignUpFormsBlank() =
-        (id.value.isNullOrBlank() || password.value.isNullOrBlank() || nickname.value.isNullOrBlank() || mbti.value.isNullOrBlank())
+        listOf(id.value, password.value, nickname.value, mbti.value).any { it.isNullOrBlank() }
 
     fun createUser(): UserInfo =
         UserInfo(id.value!!, password.value!!, nickname.value!!, mbti.value!!)
