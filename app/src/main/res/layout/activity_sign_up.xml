@@ -107,6 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/sign_up_mbti_hint"
+            android:inputType="textCapCharacters"
             android:text="@={viewModel.mbti}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_mbti"
