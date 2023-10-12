@@ -13,10 +13,11 @@ import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
-import org.sopt.dosopttemplate.util.ShowSnackBar.showSnackBar
-import org.sopt.dosopttemplate.util.ToastMessageUtil.showToast
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extensions.getParcelable
+import org.sopt.dosopttemplate.util.hideKeyboard
+import org.sopt.dosopttemplate.util.snackBar
+import org.sopt.dosopttemplate.util.toast
 
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
@@ -26,7 +27,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         binding.viewModel = viewModel
 
         initActivityLauncher()
-        initBtnClickListener()
+        initonClickListener()
     }
 
     private fun initActivityLauncher() {
@@ -40,12 +41,15 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             }
     }
 
-    private fun initBtnClickListener() {
+    private fun initonClickListener() {
         binding.btnLoginLogin.setOnClickListener {
             login()
         }
         binding.btnLoginSignUp.setOnClickListener {
             moveToSignUp()
+        }
+        binding.root.setOnClickListener { view ->
+            hideKeyboard(view)
         }
     }
 
@@ -58,12 +62,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun login() {
         when (viewModel.checkSignUp()) {
             LOGIN_SUCCEED -> {
-                showToast(applicationContext, LOGIN_SUCCEED)
+                toast(LOGIN_SUCCEED)
                 moveToMain()
             }
 
-            LOGIN_FAILED -> showSnackBar(binding.root, LOGIN_FAILED)
-            NON_MEMBER -> showSnackBar(binding.root, NON_MEMBER)
+            LOGIN_FAILED -> snackBar(binding.root, LOGIN_FAILED)
+            NON_MEMBER -> snackBar(binding.root, NON_MEMBER)
         }
     }
 
