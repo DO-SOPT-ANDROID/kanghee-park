@@ -10,6 +10,9 @@ import androidx.activity.viewModels
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.data.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.MEET_CRITERIA
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_MEET_CRITERIA
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_YET_SIGN_UP
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
@@ -56,14 +59,14 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun login() {
-        when (viewModel.checkSignUp()) {
-            LOGIN_SUCCEED -> {
+        when (viewModel.checkUserSignUp()) {
+            MEET_CRITERIA -> {
                 showToast(applicationContext, LOGIN_SUCCEED)
                 moveToMain()
             }
 
-            LOGIN_FAILED -> showSnackBar(binding.root, LOGIN_FAILED)
-            NON_MEMBER -> showSnackBar(binding.root, NON_MEMBER)
+            NOT_MEET_CRITERIA -> showSnackBar(binding.root, LOGIN_FAILED)
+            NOT_YET_SIGN_UP -> showSnackBar(binding.root, NON_MEMBER)
         }
     }
 
