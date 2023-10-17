@@ -39,7 +39,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 val data = result.data ?: return@registerForActivityResult
                 val userInfo = data.getParcelable(USER_INFO, UserInfo::class.java)
 
-                viewModel.updateUserInfo(userInfo!!)
+                userInfo?.let { viewModel.updateUserInfo(it) } ?: throw IllegalArgumentException("Missing UserInfo")
             }
     }
 
