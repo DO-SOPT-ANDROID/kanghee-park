@@ -1,12 +1,15 @@
 package org.sopt.dosopttemplate.presentation.main
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.sopt.dosopttemplate.data.UserInfo
 
 class MainViewModel : ViewModel() {
-    var user: UserInfo = UserInfo()
+    private val _user: MutableLiveData<UserInfo> = MutableLiveData()
+    val user : LiveData<UserInfo> = _user
 
     fun setUserInfo(userInfo: UserInfo) {
-        user = userInfo
+        _user.value = userInfo
     }
 }
