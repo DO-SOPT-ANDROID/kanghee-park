@@ -30,7 +30,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         binding.viewModel = viewModel
 
         initActivityLauncher()
-        initonClickListener()
+        initOnClickListener()
     }
 
     private fun initActivityLauncher() {
@@ -40,19 +40,22 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 val data = result.data ?: return@registerForActivityResult
                 val userInfo = data.getParcelable(USER_INFO, UserInfo::class.java)
 
-                userInfo?.let { viewModel.updateUserInfo(it) } ?: throw IllegalArgumentException("Missing UserInfo")
+                userInfo?.let { viewModel.updateUserInfo(it) }
+                    ?: throw IllegalArgumentException("Missing UserInfo")
             }
     }
 
-    private fun initonClickListener() {
-        binding.btnLoginLogin.setOnClickListener {
-            login()
-        }
-        binding.btnLoginSignUp.setOnClickListener {
-            moveToSignUp()
-        }
-        binding.root.setOnClickListener { view ->
-            hideKeyboard(view)
+    private fun initOnClickListener() {
+        with(binding) {
+            btnLoginLogin.setOnClickListener {
+                login()
+            }
+            btnLoginSignUp.setOnClickListener {
+                moveToSignUp()
+            }
+            root.setOnClickListener { view ->
+                hideKeyboard(view)
+            }
         }
     }
 
@@ -63,14 +66,14 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun login() {
-        when (viewModel.checkSignUp()) {
-            LOGIN_SUCCEED -> {
+        when (viewModel.checkUserSignUp()) {
+            MEET_CRITERIA -> {
                 toast(LOGIN_SUCCEED)
                 moveToMain()
             }
 
-            LOGIN_FAILED -> snackBar(binding.root, LOGIN_FAILED)
-            NON_MEMBER -> snackBar(binding.root, NON_MEMBER)
+            NOT_MEET_CRITERIA -> snackBar(binding.root, LOGIN_FAILED)
+            NOT_YET_SIGN_UP -> snackBar(binding.root, NON_MEMBER)
         }
     }
 
