@@ -14,14 +14,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
-
         getUserInfo()
     }
 
     private fun getUserInfo() {
-        val userInfo = intent.getParcelable(USER_INFO, UserInfo::class.java)
-        if (userInfo != null) {
-            viewModel.setUserInfo(userInfo)
-        }
+        val userInfo = intent.getParcelable(USER_INFO, UserInfo::class.java)?: throw IllegalArgumentException("missing userinfo")
+        viewModel.setUserInfo(userInfo)
     }
 }

@@ -24,20 +24,18 @@ class SignUpViewModel : ViewModel() {
         return Mbti.values().any { it.name == mbti.value }
     }
 
-    private fun isSignUpFormsBlank() =
-        listOf(id.value, password.value, nickname.value, mbti.value).any { it.isNullOrBlank() }
+    private fun isSignUpFormsBlank() = listOf(id.value, password.value, nickname.value, mbti.value).any { it.isNullOrBlank() }
 
-    fun createUser(): UserInfo =
-        UserInfo(id.value!!, password.value!!, nickname.value!!, mbti.value!!)
+    fun createUser(): UserInfo = UserInfo(id.value!!, password.value!!, nickname.value!!, mbti.value!!)
 
-    private fun isIdLengthSuitable() = id.value!!.length in 6..10
-    private fun isPassWordLengthSuitable() = password.value!!.length in 8..12
+    private fun isIdLengthSuitable() = id.value?.length in 6..10
+    private fun isPassWordLengthSuitable() = password.value?.length in 8..12
     private fun isNickNameRegexMatch(): Boolean {
-        return SIGNUP_REGEX.matcher(nickname.value!!).find()
+        return nickname.value?.let { SIGNUP_REGEX.matcher(it).find() } ?: false
     }
 
     private fun isMBTIRegexMatch(): Boolean {
-        return SIGNUP_REGEX.matcher(mbti.value!!).find()
+        return mbti.value?.let { SIGNUP_REGEX.matcher(it).find() } ?: false
     }
 
     companion object {

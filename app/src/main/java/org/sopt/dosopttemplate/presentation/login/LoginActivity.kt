@@ -10,6 +10,9 @@ import androidx.activity.viewModels
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.data.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.MEET_CRITERIA
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_MEET_CRITERIA
+import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_YET_SIGN_UP
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
@@ -37,7 +40,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 val data = result.data ?: return@registerForActivityResult
                 val userInfo = data.getParcelable(USER_INFO, UserInfo::class.java)
 
-                viewModel.updateUserInfo(userInfo!!)
+                userInfo?.let { viewModel.updateUserInfo(it) } ?: throw IllegalArgumentException("Missing UserInfo")
             }
     }
 
