@@ -1,18 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello DO SOPT!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="org.sopt.dosopttemplate.presentation.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        tools:context=".presentation.main.MainActivity">
+
+        <ImageView
+            android:id="@+id/iv_main_profile"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_main_id_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/id_title"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_main_profile" />
+
+        <TextView
+            android:id="@+id/tv_main_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{viewModel.user.id}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_id_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_id_title"
+            tools:text="user id" />
+
+        <TextView
+            android:id="@+id/tv_main_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/nickname_title"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
+
+        <TextView
+            android:id="@+id/tv_main_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{viewModel.user.nickname}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_nickname_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_nickname_title"
+            tools:text="user nickname" />
+
+        <TextView
+            android:id="@+id/tv_main_mbti_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/mbti_title"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_nickname"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_nickname" />
+
+        <TextView
+            android:id="@+id/tv_main_mbti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{viewModel.user.mbti}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_mbti_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_mbti_title"
+            tools:text="user mbti" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
