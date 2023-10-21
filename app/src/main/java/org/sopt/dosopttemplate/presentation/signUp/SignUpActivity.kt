@@ -6,9 +6,10 @@ import androidx.activity.viewModels
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignUpBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
-import org.sopt.dosopttemplate.util.ShowSnackBar.showSnackBar
-import org.sopt.dosopttemplate.util.ToastMessageUtil.showToast
 import org.sopt.dosopttemplate.util.binding.BindingActivity
+import org.sopt.dosopttemplate.util.hideKeyboard
+import org.sopt.dosopttemplate.util.snackBar
+import org.sopt.dosopttemplate.util.toast
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel by viewModels<SignUpViewModel>()
@@ -16,20 +17,23 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
 
-        initSignUpBtnClickListener()
+        initOnClickListener()
     }
 
-    private fun initSignUpBtnClickListener() {
+    private fun initOnClickListener() {
         binding.btnSignUp.setOnClickListener {
             if (viewModel.checkSignUpTerms()) {
                 signUp()
-            } else showSnackBar(binding.root, SIGN_UP_FAILED)
+            } else snackBar(binding.root, SIGN_UP_FAILED)
+        }
+        binding.root.setOnClickListener { view ->
+            hideKeyboard(view)
         }
     }
 
     private fun signUp() {
         createIntent()
-        showToast(applicationContext, SIGN_UP_SUCCEED)
+        toast(SIGN_UP_SUCCEED)
         finish()
     }
 

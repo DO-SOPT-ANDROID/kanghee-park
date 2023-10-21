@@ -16,10 +16,11 @@ import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_Y
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
-import org.sopt.dosopttemplate.util.ShowSnackBar.showSnackBar
-import org.sopt.dosopttemplate.util.ToastMessageUtil.showToast
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extensions.getParcelable
+import org.sopt.dosopttemplate.util.hideKeyboard
+import org.sopt.dosopttemplate.util.snackBar
+import org.sopt.dosopttemplate.util.toast
 
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
@@ -29,7 +30,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         binding.viewModel = viewModel
 
         initActivityLauncher()
-        initBtnClickListener()
+        initOnClickListener()
     }
 
     private fun initActivityLauncher() {
@@ -39,16 +40,22 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 val data = result.data ?: return@registerForActivityResult
                 val userInfo = data.getParcelable(USER_INFO, UserInfo::class.java)
 
-                userInfo?.let { viewModel.updateUserInfo(it) } ?: throw IllegalArgumentException("Missing UserInfo")
+                userInfo?.let { viewModel.updateUserInfo(it) }
+                    ?: throw IllegalArgumentException("Missing UserInfo")
             }
     }
 
-    private fun initBtnClickListener() {
-        binding.btnLoginLogin.setOnClickListener {
-            login()
-        }
-        binding.btnLoginSignUp.setOnClickListener {
-            moveToSignUp()
+    private fun initOnClickListener() {
+        with(binding) {
+            btnLoginLogin.setOnClickListener {
+                login()
+            }
+            btnLoginSignUp.setOnClickListener {
+                moveToSignUp()
+            }
+            root.setOnClickListener { view ->
+                hideKeyboard(view)
+            }
         }
     }
 
@@ -61,12 +68,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun login() {
         when (viewModel.checkUserSignUp()) {
             MEET_CRITERIA -> {
-                showToast(applicationContext, LOGIN_SUCCEED)
+                toast(LOGIN_SUCCEED)
                 moveToMain()
             }
 
-            NOT_MEET_CRITERIA -> showSnackBar(binding.root, LOGIN_FAILED)
-            NOT_YET_SIGN_UP -> showSnackBar(binding.root, NON_MEMBER)
+            NOT_MEET_CRITERIA -> snackBar(binding.root, LOGIN_FAILED)
+            NOT_YET_SIGN_UP -> snackBar(binding.root, NON_MEMBER)
         }
     }
 
