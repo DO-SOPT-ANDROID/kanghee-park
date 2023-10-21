@@ -9,23 +9,24 @@
 
         <variable
             name="data"
-            type="org.sopt.dosopttemplate.data.Profile" />
+            type="org.sopt.dosopttemplate.data.ProfileModel.FriendProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_profile"
             android:layout_width="50dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginVertical="20dp"
             android:scaleType="centerCrop"
-            android:src="@{data.profileImage}"
+            android:src="@{context.getDrawable(data.profileImage)}"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@color/black" />
 
@@ -49,11 +50,24 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
             android:maxLines="1"
-            android:text="@{data.self_description}"
+            android:text="@{data.description}"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintStart_toEndOf="@id/tv_name"
             app:layout_constraintTop_toTopOf="@id/iv_profile"
             tools:text="자기소개입니다." />
+
+        <ImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/heart"
+            android:visibility="@{data.heart == true? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
