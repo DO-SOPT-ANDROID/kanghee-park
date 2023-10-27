@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="org.sopt.dosopttemplate.presentation.search.SearchViewModel" />
+            type="org.sopt.dosopttemplate.presentation.doAndroid.DoAndroidViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -8,7 +8,7 @@ import org.sopt.dosopttemplate.data.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
 import org.sopt.dosopttemplate.presentation.myPage.MyPageFragment
-import org.sopt.dosopttemplate.presentation.search.SearchFragment
+import org.sopt.dosopttemplate.presentation.doAndroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extensions.getParcelable
@@ -37,13 +37,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private fun clickBottomNavigation() {
         binding.bnvHome.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_home -> {
-                    replaceFragment(HomeFragment())
+                R.id.menu_do_android -> {
+                    replaceFragment(DoAndroidFragment())
                     true
                 }
 
-                R.id.menu_search -> {
-                    replaceFragment(SearchFragment())
+                R.id.menu_home -> {
+                    replaceFragment(HomeFragment())
                     true
                 }
 

@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.search
+package org.sopt.dosopttemplate.presentation.doAndroid
 
 import android.os.Bundle
 import android.view.View
@@ -7,8 +7,8 @@ import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentSearchBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
-class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
-    private val viewModel by viewModels<SearchViewModel>()
+class DoAndroidFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
+    private val viewModel by viewModels<DoAndroidViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

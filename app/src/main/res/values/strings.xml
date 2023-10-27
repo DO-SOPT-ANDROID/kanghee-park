@@ -21,6 +21,6 @@
 
     <!-- home -->
     <string name="menu_home">Home</string>
-    <string name="menu_search">Search</string>
     <string name="menu_my_page">My Page</string>
+    <string name="menu_do_android">DO ANDROID</string>
 </resources>
