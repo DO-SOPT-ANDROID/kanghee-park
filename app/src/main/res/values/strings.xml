@@ -15,4 +15,12 @@
     <!-- sign up-->
     <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
     <string name="sign_up_mbti_hint">MBTI를 입력해주세요</string>
+
+    <!-- search -->
+    <string name="search_content">Search 화면입니다</string>
+
+    <!-- home -->
+    <string name="menu_home">Home</string>
+    <string name="menu_my_page">My Page</string>
+    <string name="menu_do_android">DO ANDROID</string>
 </resources>
