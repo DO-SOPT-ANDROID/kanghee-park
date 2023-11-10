@@ -20,13 +20,13 @@
             android:id="@+id/iv_profile"
             android:layout_width="50dp"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
             android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
             android:scaleType="centerCrop"
             android:src="@{context.getDrawable(data.profileImage)}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@color/black" />
 
@@ -60,7 +60,7 @@
             android:id="@+id/iv_heart"
             android:layout_width="30dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="40dp"
             android:scaleType="centerCrop"
             android:src="@drawable/heart"
             android:visibility="@{data.heart == true? View.VISIBLE : View.INVISIBLE}"
@@ -68,6 +68,15 @@
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+        <ImageView
+            android:id="@+id/iv_context_menu"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_more_vert_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
