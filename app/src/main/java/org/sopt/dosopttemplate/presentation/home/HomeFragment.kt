@@ -27,15 +27,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
-        initAdapter()
-        submitAdapterList()
+        initHomeAdapter()
+        submitHomeAdapterList()
     }
 
-    private fun submitAdapterList() {
+    private fun submitHomeAdapterList() {
         homeAdapter.submitList(mocList)
     }
 
-    private fun initAdapter() {
+    private fun initHomeAdapter() {
         homeAdapter = HomeAdapter()
         binding.rvProfileList.adapter = homeAdapter
     }
