@@ -23,4 +23,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_my_page">My Page</string>
     <string name="menu_do_android">DO ANDROID</string>
+    <string name="menu_add_bookmark">북마크 설정</string>
+    <string name="menu_remove_bookmark">북마크 해제</string>
 </resources>

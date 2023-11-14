@@ -10,7 +10,7 @@ sealed class ProfileModel {
         val name: String,
         val description: String,
         @DrawableRes
-        val profileImage: Int,
+        val profileResId: Int,
         val music: String
     ) : ProfileModel()
 
@@ -19,7 +19,7 @@ sealed class ProfileModel {
         val name: String,
         val description: String,
         @DrawableRes
-        val profileImage: Int,
+        val profileResId: Int,
         val music: String,
         val heart: Boolean
     ) : ProfileModel()

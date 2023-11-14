@@ -10,7 +10,7 @@ import org.sopt.dosopttemplate.databinding.ItemFriendProfileBinding
 import org.sopt.dosopttemplate.databinding.ItemMyProfileBinding
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class HomeAdapter : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+class HomeProfileAdapter: ListAdapter<ProfileModel, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -41,7 +41,9 @@ class HomeAdapter : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(DIFF_CALL
 
         when (holder) {
             is MyProfileViewHolder -> holder.onBind(item as ProfileModel.MyProfile)
-            is FriendProfileViewHolder -> holder.onBind(item as ProfileModel.FriendProfile)
+            is FriendProfileViewHolder -> holder.onBind(
+                item as ProfileModel.FriendProfile
+            )
         }
     }
 
