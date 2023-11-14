@@ -36,12 +36,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         homeProfileAdapter = null
     }
 
-    private fun submitHomeProfileAdapterList() {
-        homeProfileAdapter?.submitList(mocList)
-    }
-
     private fun initHomeProfileAdapter() {
         homeProfileAdapter = HomeProfileAdapter()
         binding.rvProfileList.adapter = homeProfileAdapter
+    }
+
+    private fun submitHomeProfileAdapterList() {
+        homeProfileAdapter?.submitList(mocList)
     }
 }
