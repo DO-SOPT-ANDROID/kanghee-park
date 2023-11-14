@@ -13,7 +13,7 @@ class FriendProfileViewHolder(private val binding: ItemFriendProfileBinding) :
 
     fun onBind(myProfile: ProfileModel.FriendProfile) {
         binding.data = myProfile
-        binding.ivContextMenu.setOnClickListener { v -> showContextMenu(v) }
+        binding.ivContextMenu.setOnClickListener { view -> showContextMenu(view) }
     }
 
     private fun showContextMenu(view: View) {
