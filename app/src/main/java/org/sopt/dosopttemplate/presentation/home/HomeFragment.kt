@@ -10,7 +10,7 @@ import org.sopt.dosopttemplate.util.binding.BindingFragment
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var homeProfileAdapter: HomeProfileAdapter
+    private var homeProfileAdapter: HomeProfileAdapter? = null
     private val mocList: List<ProfileModel> = listOf(
         ProfileModel.MyProfile(1, "박강희", "안녕하세요, 강희입니다.", R.drawable.profile, "윤하-별의 조각"),
         ProfileModel.FriendProfile(2, "이삭", "toast", R.drawable.ic_android, "이삭-맛있다", false),
@@ -31,8 +31,13 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         submitHomeProfileAdapterList()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        homeProfileAdapter = null
+    }
+
     private fun submitHomeProfileAdapterList() {
-        homeProfileAdapter.submitList(mocList)
+        homeProfileAdapter?.submitList(mocList)
     }
 
     private fun initHomeProfileAdapter() {
