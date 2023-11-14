@@ -5,8 +5,8 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.entity.DefaultData
-import org.sopt.dosopttemplate.data.entity.UserInfo
+import org.sopt.dosopttemplate.domain.model.DefaultData
+import org.sopt.dosopttemplate.domain.model.UserInfo
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 

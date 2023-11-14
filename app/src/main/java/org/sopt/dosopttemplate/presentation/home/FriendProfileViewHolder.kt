@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.entity.ProfileModel
+import org.sopt.dosopttemplate.domain.model.ProfileModel
 import org.sopt.dosopttemplate.databinding.ItemFriendProfileBinding
 
 class FriendProfileViewHolder(private val binding: ItemFriendProfileBinding) :

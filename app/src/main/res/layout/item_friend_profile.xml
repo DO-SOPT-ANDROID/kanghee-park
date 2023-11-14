@@ -9,7 +9,7 @@
 
         <variable
             name="data"
-            type="org.sopt.dosopttemplate.data.entity.ProfileModel.FriendProfile" />
+            type="org.sopt.dosopttemplate.domain.model.ProfileModel.FriendProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

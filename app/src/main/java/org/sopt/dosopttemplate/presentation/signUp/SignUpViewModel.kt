@@ -2,8 +2,8 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.data.entity.Mbti
-import org.sopt.dosopttemplate.data.entity.UserInfo
+import org.sopt.dosopttemplate.domain.model.Mbti
+import org.sopt.dosopttemplate.domain.model.UserInfo
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
