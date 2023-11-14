@@ -8,7 +8,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.UserInfo
+import org.sopt.dosopttemplate.data.entity.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.MEET_CRITERIA
 import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_MEET_CRITERIA

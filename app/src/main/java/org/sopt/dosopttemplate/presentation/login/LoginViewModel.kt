@@ -2,7 +2,7 @@ package org.sopt.dosopttemplate.presentation.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.data.UserInfo
+import org.sopt.dosopttemplate.data.entity.UserInfo
 
 class LoginViewModel : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.ProfileModel
+import org.sopt.dosopttemplate.data.entity.ProfileModel
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 

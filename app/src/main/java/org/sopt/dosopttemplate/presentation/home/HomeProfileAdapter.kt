@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.ProfileModel
+import org.sopt.dosopttemplate.data.entity.ProfileModel
 import org.sopt.dosopttemplate.databinding.ItemFriendProfileBinding
 import org.sopt.dosopttemplate.databinding.ItemMyProfileBinding
 import org.sopt.dosopttemplate.util.ItemDiffCallback
