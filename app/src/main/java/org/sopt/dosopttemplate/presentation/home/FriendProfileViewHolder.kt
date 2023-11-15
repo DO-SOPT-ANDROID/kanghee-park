@@ -32,16 +32,7 @@ class FriendProfileViewHolder(private val binding: ItemFriendProfileBinding) :
     }
 
     private fun changeBookmarkStateTo(bookmarkState: Boolean): Boolean {
-        val user = binding.data?.let {
-            ProfileModel.FriendProfile(
-                it.id,
-                it.name,
-                it.description,
-                it.profileResId,
-                it.music,
-                bookmarkState
-            )
-        }
+        val user = binding.data?.copy(heart = bookmarkState)
         binding.data = user
         return true
     }
