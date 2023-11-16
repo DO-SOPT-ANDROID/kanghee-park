@@ -4,11 +4,9 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.domain.model.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.MEET_CRITERIA
 import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_MEET_CRITERIA
@@ -17,32 +15,18 @@ import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
 import org.sopt.dosopttemplate.util.binding.BindingActivity
-import org.sopt.dosopttemplate.util.extensions.getParcelable
 import org.sopt.dosopttemplate.util.hideKeyboard
 import org.sopt.dosopttemplate.util.snackBar
 import org.sopt.dosopttemplate.util.toast
 
+@AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val viewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
 
-        initActivityLauncher()
         initOnClickListener()
-    }
-
-    private fun initActivityLauncher() {
-        resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode != RESULT_OK) return@registerForActivityResult
-                val data = result.data ?: return@registerForActivityResult
-                val userInfo = data.getParcelable(USER_INFO, UserInfo::class.java)
-
-                userInfo?.let { viewModel.updateUserInfo(it) }
-                    ?: throw IllegalArgumentException("Missing UserInfo")
-            }
     }
 
     private fun initOnClickListener() {
@@ -59,12 +43,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun moveToSignUp() {
-        if (::resultLauncher.isInitialized) resultLauncher.launch(
-            Intent(this, SignUpActivity::class.java)
-        )
-    }
-
     private fun login() {
         when (viewModel.checkUserSignUp()) {
             MEET_CRITERIA -> {
@@ -75,6 +53,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             NOT_MEET_CRITERIA -> snackBar(binding.root, LOGIN_FAILED)
             NOT_YET_SIGN_UP -> snackBar(binding.root, NON_MEMBER)
         }
+    }
+
+    private fun moveToSignUp() {
+        val intentToSignUp = Intent(this, SignUpActivity::class.java)
+        startActivity(intentToSignUp)
     }
 
     private fun moveToMain() {
