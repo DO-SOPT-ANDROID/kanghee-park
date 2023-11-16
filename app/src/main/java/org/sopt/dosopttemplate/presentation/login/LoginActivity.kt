@@ -13,7 +13,7 @@ import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_M
 import org.sopt.dosopttemplate.presentation.login.LoginViewModel.Companion.NOT_YET_SIGN_UP
 import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
-import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
+import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.hideKeyboard
 import org.sopt.dosopttemplate.util.snackBar
@@ -62,7 +62,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun moveToMain() {
         val intentToMain = Intent(this, MainActivity::class.java).apply {
-            putExtra(USER_INFO, viewModel.userInfo)
+            putExtra(USER, viewModel.user)
             addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intentToMain)
