@@ -1,16 +1,16 @@
 package org.sopt.dosopttemplate.presentation.signUp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignUpBinding
-import org.sopt.dosopttemplate.presentation.login.LoginActivity
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.hideKeyboard
 import org.sopt.dosopttemplate.util.snackBar
 import org.sopt.dosopttemplate.util.toast
 
+@AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel by viewModels<SignUpViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +18,13 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.viewModel = viewModel
 
         initOnClickListener()
+        initSignUpStateObserver()
     }
 
     private fun initOnClickListener() {
         binding.btnSignUp.setOnClickListener {
-            if (viewModel.checkSignUpTerms()) {
-                signUp()
+            if (viewModel.isSignUpAvailable()) {
+                viewModel.postSignUp()
             } else snackBar(binding.root, SIGN_UP_FAILED)
         }
         binding.root.setOnClickListener { view ->
@@ -31,20 +32,16 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
     }
 
-    private fun signUp() {
-        createIntent()
-        toast(SIGN_UP_SUCCEED)
-        finish()
+    private fun initSignUpStateObserver() {
+        viewModel.signUpState.observe(this) { success ->
+            if (success) signUp()
+            else toast(SIGN_UP_FAILED)
+        }
     }
 
-    private fun createIntent() {
-        val intent = Intent(this, LoginActivity::class.java).apply {
-            putExtra(
-                USER_INFO,
-                viewModel.createUser(),
-            )
-        }
-        setResult(RESULT_OK, intent)
+    private fun signUp() {
+        toast(SIGN_UP_SUCCEED)
+        finish()
     }
 
     companion object {
