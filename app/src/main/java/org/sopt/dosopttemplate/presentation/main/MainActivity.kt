@@ -3,6 +3,7 @@ package org.sopt.dosopttemplate.presentation.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.domain.model.UserInfo
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
@@ -13,6 +14,7 @@ import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extensions.getParcelable
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var userInfo: UserInfo

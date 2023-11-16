@@ -3,11 +3,13 @@ package org.sopt.dosopttemplate.presentation.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.domain.model.ProfileModel
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
+@AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by viewModels<HomeViewModel>()
     private var homeProfileAdapter: HomeProfileAdapter? = null
