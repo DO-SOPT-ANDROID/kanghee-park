@@ -1,7 +1,7 @@
 package org.sopt.dosopttemplate.data.repository
 
 import org.sopt.dosopttemplate.data.datasource.AuthDataSource
-import org.sopt.dosopttemplate.data.entity.MemberRequest
+import org.sopt.dosopttemplate.data.entity.request.SignUpRequest
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class AuthRepositoryImpl @Inject constructor(
     ): Result<Unit> =
         kotlin.runCatching {
             authDataSource.postSignUp(
-                MemberRequest(
+                SignUpRequest(
                     userName,
                     password,
                     nickname
