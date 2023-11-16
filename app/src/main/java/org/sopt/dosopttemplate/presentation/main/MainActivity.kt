@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.domain.model.UserInfo
+import org.sopt.dosopttemplate.domain.model.User
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
 import org.sopt.dosopttemplate.presentation.myPage.MyPageFragment
@@ -17,7 +17,7 @@ import org.sopt.dosopttemplate.util.extensions.getParcelable
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainViewModel>()
-    private lateinit var userInfo: UserInfo
+    private lateinit var user: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
@@ -27,13 +27,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 .add(R.id.fcv_home, HomeFragment())
                 .commit()
         }
-        getUserInfo()
+        getUser()
         clickBottomNavigation()
     }
 
-    private fun getUserInfo() {
-        userInfo = intent.getParcelable(SignUpActivity.USER_INFO, UserInfo::class.java)
-            ?: throw IllegalArgumentException("missing userinfo")
+    private fun getUser() {
+        user = intent.getParcelable(SignUpActivity.USER, User::class.java)
+            ?: throw IllegalArgumentException("missing user")
     }
 
     private fun clickBottomNavigation() {
@@ -52,10 +52,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 R.id.menu_mypage -> {
                     replaceFragment(
                         MyPageFragment.newInstance(
-                            userInfo.id,
-                            userInfo.password,
-                            userInfo.nickname,
-                            userInfo.mbti
+                            user.id,
+                            user.nickname,
+                            user.nickname
                         )
                     )
                     true

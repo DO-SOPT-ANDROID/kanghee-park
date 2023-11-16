@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.domain.model.DefaultData
-import org.sopt.dosopttemplate.domain.model.UserInfo
+import org.sopt.dosopttemplate.domain.model.User
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
@@ -24,10 +24,9 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     private fun getBundleArgs() {
         arguments ?: return
         val id = createDefaultData(ARGS_ID)
-        val password = createDefaultData(ARGS_PASSWORD)
+        val username = createDefaultData(ARGS_USERNAME)
         val nickname = createDefaultData(ARGS_NICKNAME)
-        val mbti = createDefaultData(ARGS_MBTI)
-        viewModel.setUserInfo(UserInfo(id.value, password.value, nickname.value, mbti.value))
+        viewModel.setUser(User(id.value.toInt(), username.value, nickname.value))
     }
 
     private fun createDefaultData(key: String): DefaultData {
@@ -36,18 +35,16 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
 
     companion object {
         private const val ARGS_ID = "ID"
-        private const val ARGS_PASSWORD = "PASSWORD"
+        private const val ARGS_USERNAME = "USERNAME"
         private const val ARGS_NICKNAME = "NICKNAME"
-        private const val ARGS_MBTI = "MBTI"
 
         @JvmStatic
-        fun newInstance(id: String, password: String, nickname: String, mbti: String) =
+        fun newInstance(id: Int, username: String, nickname: String) =
             MyPageFragment().apply {
                 val args = bundleOf(
                     ARGS_ID to id,
-                    ARGS_PASSWORD to password,
-                    ARGS_NICKNAME to nickname,
-                    ARGS_MBTI to mbti,
+                    ARGS_USERNAME to username,
+                    ARGS_NICKNAME to nickname
                 )
                 arguments = args
             }
