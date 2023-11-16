@@ -47,6 +47,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     companion object {
         private const val SIGN_UP_SUCCEED = "회원가입 성공"
         private const val SIGN_UP_FAILED = "회원가입 실패. 조건을 확인해주세요."
-        const val USER_INFO = "userInfo"
+        const val USER = "user"
     }
 }
