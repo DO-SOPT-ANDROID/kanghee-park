@@ -10,6 +10,7 @@ import org.sopt.dosopttemplate.domain.model.User
 import org.sopt.dosopttemplate.presentation.doAndroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
 import org.sopt.dosopttemplate.presentation.myPage.MyPageFragment
+import org.sopt.dosopttemplate.presentation.recommend.RecommendFragment
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extensions.getParcelable
@@ -57,6 +58,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                             user.nickname
                         )
                     )
+                    true
+                }
+
+                R.id.menu_recommend -> {
+                    replaceFragment(RecommendFragment())
                     true
                 }
 
