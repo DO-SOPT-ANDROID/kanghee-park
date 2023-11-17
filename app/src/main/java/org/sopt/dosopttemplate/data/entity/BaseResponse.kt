@@ -11,5 +11,6 @@ data class BaseResponse<T>(
     val total: Int,
     @SerialName("total_pages")
     val totalPages: Int,
-    val data: T? = null
+    val data: T? = null,
+    val support: SupportEntity
 )
