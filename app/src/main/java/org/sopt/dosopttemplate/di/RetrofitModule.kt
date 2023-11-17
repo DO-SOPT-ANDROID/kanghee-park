@@ -9,7 +9,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.*
 import org.sopt.dosopttemplate.BuildConfig
 import retrofit2.Retrofit
 import javax.inject.Qualifier
@@ -30,7 +29,7 @@ object RetrofitModule {
     @SoptType
     fun provideSoptOkHttpClient() = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(Level.BODY)
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
@@ -41,10 +40,11 @@ object RetrofitModule {
     @Provides
     @Singleton
     @SoptType
-    fun provideSoptRetrofit(@SoptType okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .client(okHttpClient)
-        .baseUrl(BASE_URL)
-        .addConverterFactory(Json.asConverterFactory(CONTENT_TYPE.toMediaType()))
-        .build()
+    fun provideSoptRetrofit(@SoptType okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(Json.asConverterFactory(CONTENT_TYPE.toMediaType()))
+            .build()
 
 }
