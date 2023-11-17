@@ -3,11 +3,11 @@ package org.sopt.dosopttemplate.data.service
 import org.sopt.dosopttemplate.data.entity.BaseResponse
 import org.sopt.dosopttemplate.data.entity.ProfileEntity
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ReqresService {
-    @GET("users/{page}")
+    @GET("users")
     suspend fun getUserList(
-        @Path("page") page: Int
+        @Query("page") page: Int
     ): BaseResponse<List<ProfileEntity>>
 }
