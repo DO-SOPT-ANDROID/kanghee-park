@@ -18,6 +18,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ReqresModule {
     private const val REQRES_URL = BuildConfig.REQRES_URL
+    private const val CONTENT_TYPE = "application/json"
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -42,7 +43,6 @@ object ReqresModule {
     fun provideReqresRetrofit(@ReqresType okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(REQRES_URL)
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(Json.asConverterFactory(CONTENT_TYPE.toMediaType()))
         .build()
-
 }
