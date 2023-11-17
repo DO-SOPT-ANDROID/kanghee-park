@@ -22,7 +22,12 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "BASE_URL", properties["base.url"]
+        buildConfigField "String", "REQRES_URL", properties["reqres.url"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    kapt {
+        correctErrorTypes true
     }
 
     buildTypes {

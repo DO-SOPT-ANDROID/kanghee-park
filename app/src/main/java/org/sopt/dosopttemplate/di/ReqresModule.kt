@@ -9,7 +9,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.*
 import org.sopt.dosopttemplate.BuildConfig
 import retrofit2.Retrofit
 import javax.inject.Qualifier
@@ -17,20 +16,19 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
-    private const val BASE_URL = BuildConfig.BASE_URL
-    private const val CONTENT_TYPE = "application/json"
+object ReqresModule {
+    private const val REQRES_URL = BuildConfig.REQRES_URL
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
-    annotation class SoptType
+    annotation class ReqresType
 
     @Provides
     @Singleton
-    @SoptType
-    fun provideSoptOkHttpClient() = if (BuildConfig.DEBUG) {
+    @ReqresType
+    fun provideReqresOkHttpClient() = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(Level.BODY)
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
@@ -40,11 +38,11 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    @SoptType
-    fun provideSoptRetrofit(@SoptType okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    @ReqresType
+    fun provideReqresRetrofit(@ReqresType okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl(BASE_URL)
-        .addConverterFactory(Json.asConverterFactory(CONTENT_TYPE.toMediaType()))
+        .baseUrl(REQRES_URL)
+        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
 }
