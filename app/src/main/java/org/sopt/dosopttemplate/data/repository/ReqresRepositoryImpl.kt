@@ -11,5 +11,7 @@ class ReqresRepositoryImpl @Inject constructor(
     override suspend fun getListUser(page: Int): Result<List<Profile>> =
         runCatching {
             reqresDataSource.getUserList(page)
-        }.map { response -> requireNotNull(response.data).map { profileEntity -> profileEntity.toProfile() } }
+        }.map { response ->
+            response.data?.map { profileEntity -> profileEntity.toProfile() } ?: emptyList()
+        }
 }

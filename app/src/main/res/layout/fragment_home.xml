@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewModel"
+            name="vm"
             type="org.sopt.dosopttemplate.presentation.home.HomeViewModel" />
     </data>
 

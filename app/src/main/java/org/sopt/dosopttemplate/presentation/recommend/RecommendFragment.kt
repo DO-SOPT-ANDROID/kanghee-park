@@ -10,12 +10,12 @@ import org.sopt.dosopttemplate.util.binding.BindingFragment
 
 @AndroidEntryPoint
 class RecommendFragment : BindingFragment<FragmentRecommendBinding>(R.layout.fragment_recommend) {
-    private val recommendViewModel by viewModels<RecommendViewModel>()
+    private val viewModel by viewModels<RecommendViewModel>()
     private var recommendProfileAdapter: RecommendProfileAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recommendViewModel = recommendViewModel
+        binding.vm = viewModel
         initRecommendProfileAdapter()
         initProfileListObserver()
     }
@@ -31,12 +31,12 @@ class RecommendFragment : BindingFragment<FragmentRecommendBinding>(R.layout.fra
     }
 
     private fun initProfileListObserver() {
-        recommendViewModel.profileList.observe(viewLifecycleOwner) {
+        viewModel.profileList.observe(viewLifecycleOwner) {
             submitHomeProfileAdapterList()
         }
     }
 
     private fun submitHomeProfileAdapterList() {
-        recommendProfileAdapter?.submitList(recommendViewModel.profileList.value)
+        recommendProfileAdapter?.submitList(viewModel.profileList.value)
     }
 }

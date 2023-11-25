@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="recommendViewModel"
+            name="vm"
             type="org.sopt.dosopttemplate.presentation.recommend.RecommendViewModel" />
     </data>
 

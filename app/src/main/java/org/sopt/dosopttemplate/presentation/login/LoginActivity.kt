@@ -21,7 +21,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private val viewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.viewModel = viewModel
+        binding.vm = viewModel
 
         initOnClickListener()
         initObserver()
@@ -30,7 +30,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initOnClickListener() {
         with(binding) {
             btnLoginLogin.setOnClickListener {
-                viewModel?.postSignIn()
+                viewModel.postSignIn()
             }
             btnLoginSignUp.setOnClickListener {
                 moveToSignUp()
