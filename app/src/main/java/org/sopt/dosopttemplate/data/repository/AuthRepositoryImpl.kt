@@ -15,7 +15,7 @@ class AuthRepositoryImpl @Inject constructor(
         password: String,
         nickname: String
     ): Result<Unit> =
-        kotlin.runCatching {
+        runCatching {
             authDataSource.postSignUp(
                 SignUpRequest(
                     userName,
@@ -26,7 +26,7 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
     override suspend fun postSignIn(userName: String, password: String): Result<User> =
-        kotlin.runCatching {
+        runCatching {
             authDataSource.postSignIn(
                 SignInRequest(
                     userName, password

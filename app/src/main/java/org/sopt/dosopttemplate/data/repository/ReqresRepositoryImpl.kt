@@ -9,7 +9,7 @@ class ReqresRepositoryImpl @Inject constructor(
     private val reqresDataSource: ReqresDataSource
 ) : ReqresRepository {
     override suspend fun getListUser(page: Int): Result<List<Profile>> =
-        kotlin.runCatching {
+        runCatching {
             reqresDataSource.getUserList(page)
         }.map { response -> requireNotNull(response.data).map { profileEntity -> profileEntity.toProfile() } }
 }
