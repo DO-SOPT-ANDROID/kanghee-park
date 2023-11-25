@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.ProfileModel
+import org.sopt.dosopttemplate.domain.model.ProfileModel
 import org.sopt.dosopttemplate.databinding.ItemFriendProfileBinding
 
 class FriendProfileViewHolder(private val binding: ItemFriendProfileBinding) :
@@ -32,16 +32,7 @@ class FriendProfileViewHolder(private val binding: ItemFriendProfileBinding) :
     }
 
     private fun changeBookmarkStateTo(bookmarkState: Boolean): Boolean {
-        val user = binding.data?.let {
-            ProfileModel.FriendProfile(
-                it.id,
-                it.name,
-                it.description,
-                it.profileResId,
-                it.music,
-                bookmarkState
-            )
-        }
+        val user = binding.data?.copy(heart = bookmarkState)
         binding.data = user
         return true
     }

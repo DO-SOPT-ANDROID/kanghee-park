@@ -3,10 +3,12 @@ package org.sopt.dosopttemplate.presentation.doAndroid
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentSearchBinding
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
+@AndroidEntryPoint
 class DoAndroidFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val viewModel by viewModels<DoAndroidViewModel>()
 

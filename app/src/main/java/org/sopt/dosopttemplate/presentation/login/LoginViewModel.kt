@@ -1,34 +1,45 @@
 package org.sopt.dosopttemplate.presentation.login
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.data.UserInfo
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import org.sopt.dosopttemplate.domain.model.InputStatus
+import org.sopt.dosopttemplate.domain.model.User
+import org.sopt.dosopttemplate.domain.usecase.PostSignInUseCase
+import timber.log.Timber
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val postSignInUseCase: PostSignInUseCase
+) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
-    lateinit var userInfo: UserInfo
+    private val _signInState: MutableLiveData<InputStatus> = MutableLiveData()
+    val signInState: LiveData<InputStatus> = _signInState
+    private val _loginUser: MutableLiveData<User> = MutableLiveData()
+    val loginUser: LiveData<User> = _loginUser
 
-    fun checkUserSignUp(): Int {
-        return if (isUserSignUp()) {
-            checkLoginCriteria()
-        } else NOT_YET_SIGN_UP
+    fun postSignIn() {
+        viewModelScope.launch {
+            postSignInUseCase(
+                requireNotNull(id.value),
+                requireNotNull(password.value)
+            ).onSuccess { user ->
+                _signInState.value = InputStatus.RIGHTINPUT
+                _loginUser.value = user
+            }
+                .onFailure { throwable ->
+                    _signInState.value = InputStatus.WRONGINPUT
+                    Timber.e("$throwable")
+                }
+        }
     }
 
-    private fun isUserSignUp() = ::userInfo.isInitialized
-
-    private fun checkLoginCriteria() = if (isUserInfoCorrect()) MEET_CRITERIA
-    else NOT_MEET_CRITERIA
-
-    private fun isUserInfoCorrect() = id.value == userInfo.id && password.value == userInfo.password
-
-    fun updateUserInfo(userInfo: UserInfo) {
-        this.userInfo = userInfo
-    }
-
-    companion object {
-        const val MEET_CRITERIA = 0
-        const val NOT_MEET_CRITERIA = 1
-        const val NOT_YET_SIGN_UP = 2
+    fun changeSignInStateToEditing() {
+        _signInState.value = InputStatus.EDITING
     }
 }
