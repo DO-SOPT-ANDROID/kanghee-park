@@ -20,6 +20,8 @@ class SignUpViewModel @Inject constructor(
     val password: MutableLiveData<String> = MutableLiveData()
     val nickname: MutableLiveData<String> = MutableLiveData()
     val mbti: MutableLiveData<String> = MutableLiveData()
+    private val _isPasswordMeetCriteria: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isPasswordMeetCriteria: LiveData<Boolean> = _isPasswordMeetCriteria
     private val _isMeetCriteria: MutableLiveData<Boolean> = MutableLiveData(false)
     val isMeetCriteria: LiveData<Boolean> = _isMeetCriteria
     private val _signUpState = MutableLiveData<Boolean>()
@@ -59,8 +61,10 @@ class SignUpViewModel @Inject constructor(
         return id.value?.let { ID_REGEX.matcher(it).find() } ?: false
     }
 
-    private fun isPasswordRegexMatch(): Boolean {
-        return password.value?.let { PASSWORD_REGEX.matcher(it).find() } ?: false
+    fun isPasswordRegexMatch(): Boolean {
+        val pwRegexMatch = password.value?.let { PASSWORD_REGEX.matcher(it).find() } ?: false
+        _isPasswordMeetCriteria.value = pwRegexMatch
+        return pwRegexMatch
     }
 
     companion object {
