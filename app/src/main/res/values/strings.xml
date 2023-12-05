@@ -15,6 +15,7 @@
     <!-- sign up-->
     <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
     <string name="sign_up_mbti_hint">MBTI를 입력해주세요</string>
+    <string name="sign_up_password_error">비밀번호는 영문,숫자,특수문자를 모두 포함한 6~12글자 이내입니다.</string>
 
     <!-- search -->
     <string name="search_content">Search 화면입니다</string>
