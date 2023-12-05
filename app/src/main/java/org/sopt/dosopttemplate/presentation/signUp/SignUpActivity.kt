@@ -37,6 +37,12 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             if (success) signUp()
             else toast(SIGN_UP_FAILED)
         }
+        viewModel.id.observe(this) { _ ->
+            viewModel.updateIsMeetCriteria()
+        }
+        viewModel.password.observe(this) { _ ->
+            viewModel.updateIsMeetCriteria()
+        }
     }
 
     private fun signUp() {
