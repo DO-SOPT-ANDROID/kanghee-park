@@ -46,7 +46,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
         viewModel.password.observe(this) { _ ->
             viewModel.updateIsMeetCriteria()
-            viewModel.isPasswordRegexMatch()
+            viewModel.updatePasswordMeetCriteria()
         }
     }
 
