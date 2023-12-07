@@ -20,6 +20,10 @@ class SignUpViewModel @Inject constructor(
     val password: MutableLiveData<String> = MutableLiveData()
     val nickname: MutableLiveData<String> = MutableLiveData()
     val mbti: MutableLiveData<String> = MutableLiveData()
+    private val _isPasswordMeetCriteria: MutableLiveData<Boolean> = MutableLiveData()
+    val isPasswordMeetCriteria: LiveData<Boolean> = _isPasswordMeetCriteria
+    private val _isMeetCriteria: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isMeetCriteria: LiveData<Boolean> = _isMeetCriteria
     private val _signUpState = MutableLiveData<Boolean>()
     val signUpState: LiveData<Boolean> = _signUpState
 
@@ -40,33 +44,36 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    fun isSignUpAvailable(): Boolean {
-        if (isSignUpFormsBlank()) return false
-        return isSignUpFormsMatch()
+    fun updatePasswordMeetCriteria() {
+        _isPasswordMeetCriteria.value = isPasswordRegexMatch()
     }
 
-    private fun isSignUpFormsMatch() =
-        (isIdLengthSuitable() && isPassWordLengthSuitable() && isNickNameRegexMatch() && isMBTIRegexMatch() && isMbtiInEnum())
+    fun updateIsMeetCriteria() {
+        _isMeetCriteria.value = isSignUpAvailable()
+    }
+
+    fun isSignUpAvailable() =
+        (isIdRegexMatch() && isPasswordRegexMatch() && isSignUpFormsBlank() && isMbtiInEnum())
 
     private fun isMbtiInEnum(): Boolean {
         return Mbti.values().any { it.name == mbti.value }
     }
 
-    private fun isSignUpFormsBlank() =
-        listOf(id.value, password.value, nickname.value, mbti.value).any { it.isNullOrBlank() }
+    private fun isSignUpFormsBlank() = !(listOf(id.value, password.value, nickname.value, mbti.value).any { it.isNullOrBlank() })
 
-    private fun isIdLengthSuitable() = id.value?.length in 6..10
-    private fun isPassWordLengthSuitable() = password.value?.length in 8..12
-    private fun isNickNameRegexMatch(): Boolean {
-        return nickname.value?.let { SIGNUP_REGEX.matcher(it).find() } ?: false
+    private fun isIdRegexMatch(): Boolean {
+        return id.value?.let { ID_REGEX.matcher(it).find() } ?: false
     }
 
-    private fun isMBTIRegexMatch(): Boolean {
-        return mbti.value?.let { SIGNUP_REGEX.matcher(it).find() } ?: false
+    private fun isPasswordRegexMatch(): Boolean {
+        return password.value?.let { PASSWORD_REGEX.matcher(it).find() } ?: false
     }
 
     companion object {
-        private const val SIGNUP_PATTERN = """^\S+$"""
-        val SIGNUP_REGEX: Pattern = Pattern.compile(SIGNUP_PATTERN)
+        private const val ID_PATTERN = """^[a-zA-Z0-9]{6,10}${'$'}"""
+        private const val PASSWORD_PATTERN =
+            """^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#${'$'}%^&*(),.?":{}|<>]).{6,12}${'$'}"""
+        val ID_REGEX: Pattern = Pattern.compile(ID_PATTERN)
+        val PASSWORD_REGEX: Pattern = Pattern.compile(PASSWORD_PATTERN)
     }
 }
