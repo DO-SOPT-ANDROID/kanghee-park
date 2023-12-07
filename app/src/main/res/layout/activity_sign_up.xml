@@ -64,13 +64,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@{vm.isPasswordMeetCriteria == true? @color/black : @color/red}"
+            android:backgroundTint="@{vm.isPasswordMeetCriteria != null &amp;&amp; vm.isPasswordMeetCriteria == false ? @color/red : @color/black}"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:text="@={vm.password}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_password_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/sign_up_password_error"
+            android:textColor="@color/red"
+            android:textSize="13sp"
+            android:visibility="@{vm.isPasswordMeetCriteria != null &amp;&amp; vm.isPasswordMeetCriteria == false ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_password" />
 
         <TextView
             android:id="@+id/tv_sign_up_nickname"
