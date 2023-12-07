@@ -19,6 +19,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
         initOnClickListener()
         initSignUpStateObserver()
+        initSignUpFormsObserver()
     }
 
     private fun initOnClickListener() {
@@ -37,6 +38,9 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             if (success) signUp()
             else toast(SIGN_UP_FAILED)
         }
+    }
+
+    private fun initSignUpFormsObserver() {
         viewModel.id.observe(this) { _ ->
             viewModel.updateIsMeetCriteria()
         }
