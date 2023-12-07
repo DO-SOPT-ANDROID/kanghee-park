@@ -20,7 +20,7 @@ class SignUpViewModel @Inject constructor(
     val password: MutableLiveData<String> = MutableLiveData()
     val nickname: MutableLiveData<String> = MutableLiveData()
     val mbti: MutableLiveData<String> = MutableLiveData()
-    private val _isPasswordMeetCriteria: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _isPasswordMeetCriteria: MutableLiveData<Boolean> = MutableLiveData()
     val isPasswordMeetCriteria: LiveData<Boolean> = _isPasswordMeetCriteria
     private val _isMeetCriteria: MutableLiveData<Boolean> = MutableLiveData(false)
     val isMeetCriteria: LiveData<Boolean> = _isMeetCriteria
