@@ -44,8 +44,12 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
+    fun updatePasswordMeetCriteria() {
+        _isPasswordMeetCriteria.value = isPasswordRegexMatch()
+    }
+
     fun updateIsMeetCriteria() {
-        _isMeetCriteria.value = (isIdRegexMatch() && isPasswordRegexMatch())
+        _isMeetCriteria.value = isSignUpAvailable()
     }
 
     fun isSignUpAvailable() =
@@ -61,10 +65,8 @@ class SignUpViewModel @Inject constructor(
         return id.value?.let { ID_REGEX.matcher(it).find() } ?: false
     }
 
-    fun isPasswordRegexMatch(): Boolean {
-        val pwRegexMatch = password.value?.let { PASSWORD_REGEX.matcher(it).find() } ?: false
-        _isPasswordMeetCriteria.value = pwRegexMatch
-        return pwRegexMatch
+    private fun isPasswordRegexMatch(): Boolean {
+        return password.value?.let { PASSWORD_REGEX.matcher(it).find() } ?: false
     }
 
     companion object {
